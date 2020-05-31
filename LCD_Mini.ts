@@ -89,10 +89,10 @@ export function lcd_setContrast(contrast:number, clickBoardNum: clickBoardID){
 }
 
 export function lcd_setup( clickBoardNum: clickBoardID){
-
-    bBoard.writePin(HIGH,RST, clickBoardNum);
-    bBoard.writePin(HIGH,CS2, clickBoardNum);
-    bBoard.writePin(HIGH,CS, clickBoardNum);
+    const PinSet = new bBoard.PinSettings;
+    PinSet.writePin(HIGH,RST, clickBoardNum);
+    PinSet.writePin(HIGH,CS2, clickBoardNum);
+    PinSet.writePin(HIGH,CS, clickBoardNum);
 
     expander_setup(clickBoardNum);
     expander_setOutput(0,clickBoardNum);
@@ -126,9 +126,10 @@ const WRITE_BYTE = 0b01000000
 function expander_sendByte(addr:number, byte:number, clickBoardNum: clickBoardID){
     //spi1_master_open(LCD);
   //  LCDMini_nCS_LAT = 0;
+  const SPIObj= new bBoard.SPIsetting;
   let cmd=[WRITE_BYTE,addr,byte];
   //bBoard.clearPin(CS,clickBoardNum)
-     bBoard.SPIWriteArray(cmd,clickBoardNum)
+     SPIObj.SPIWriteArray(cmd,clickBoardNum)
    
 
  //bBoard.setPin(CS,clickBoardNum)
@@ -147,11 +148,11 @@ function expander_setOutput(output:number, clickBoardNum: clickBoardID){
 export function digipot_setWiper(val:number, clickBoardNum: clickBoardID){
 
     let cmd = [0,val];
-   
+   const SPIObj= new bBoard.SPIsetting;
    // bBoard.clearPin(CS2,clickBoardNum)
-bBoard.spiCS(CS2,clickBoardNum)
-    bBoard.SPIWriteArray(cmd,clickBoardNum)
-    bBoard.spiCS(CS,clickBoardNum)
+    SPIObj.spiCS(CS2,clickBoardNum)
+    SPIObj.SPIWriteArray(cmd,clickBoardNum)
+    SPIObj.spiCS(CS,clickBoardNum)
 //bBoard.setPin(CS2,clickBoardNum)
 }
 
