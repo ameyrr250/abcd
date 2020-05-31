@@ -9,7 +9,8 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "bBoard.ts"
+        "bBoard.ts",
+        "LCD_Mini.ts"
     ],
     "testFiles": [
         "test.ts"
