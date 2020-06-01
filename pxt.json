@@ -7,10 +7,12 @@
     },
     "files": [
         "main.blocks",
-        "main.ts",
         "README.md",
         "bBoard.ts",
-        "LCD_Mini.ts"
+        "LCD_Mini.ts",
+        "fun.ts",
+        "main.ts",
+        "Weather.ts"
     ],
     "testFiles": [
         "test.ts"
